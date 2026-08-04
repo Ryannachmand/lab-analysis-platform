@@ -1,0 +1,7 @@
+.workspace {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-base);
+}

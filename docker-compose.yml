@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "${API_PORT:-8000}:8000"
+    volumes:
+      - ./jobs:/app/jobs
+      - ${SKILLS_DIR}:/claude-skills:ro
+    env_file: .env
+    restart: unless-stopped
+
+  worker:
+    build: ./worker
+    volumes:
+      - ./jobs:/workspace/jobs
+      - ${SKILLS_DIR}:/claude-skills:ro
+    profiles:
+      - worker
+    restart: "no"

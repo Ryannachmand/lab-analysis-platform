@@ -1,0 +1,94 @@
+.file-tree {
+  padding: 8px 0;
+}
+
+.file-tree__header {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 6px 16px 8px;
+}
+
+.tree-node__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: background 0.12s ease, color 0.12s ease;
+  user-select: none;
+}
+
+.tree-node__label:hover {
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+}
+
+.tree-node__label--file:hover {
+  color: var(--accent-primary);
+}
+
+.tree-node__icon {
+  font-size: 12px;
+  opacity: 0.8;
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.tree-node__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-tree__empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  padding: 6px 16px;
+}
+
+.file-tree__job-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.file-tree__folder-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.file-tree__sub .tree-node__label {
+  cursor: pointer;
+}
+
+.tree-node__label--folder {
+  color: var(--text-muted);
+}
+
+.tree-node__label--folder:hover {
+  color: var(--text-primary);
+}
+
+.tree-node__caret {
+  font-size: 10px;
+  width: 12px;
+  flex-shrink: 0;
+  color: var(--accent-primary);
+  opacity: 0.7;
+}

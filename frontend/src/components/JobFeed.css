@@ -1,0 +1,401 @@
+.job-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Status line */
+.feed-status {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feed-status::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+/* Progress checkpoint item */
+.feed-progress {
+  font-size: 13px;
+  color: var(--text-primary);
+  padding: 6px 0 6px 12px;
+  border-left: 4px solid var(--accent-primary);
+  display: flex;
+  align-items: center;
+}
+
+/* Error card */
+.feed-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #fca5a5;
+}
+
+/* Log line */
+.feed-log {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 2px 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ── Confirm card ──────────────────────────────────────────────────── */
+.confirm-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.confirm-card__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-primary);
+  margin-bottom: 10px;
+}
+
+.confirm-card__summary {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.confirm-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.confirm-card__pipeline {
+  font-size: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent-primary);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.confirm-card__conf {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.conf-high {
+  background: rgba(74, 222, 128, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.conf-mid {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+.conf-low {
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.confirm-card__assumptions {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.confirm-card__assumptions li {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding-left: 14px;
+  position: relative;
+}
+
+.confirm-card__assumptions li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+}
+
+.confirm-card__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.confirm-card__run {
+  padding: 9px 18px;
+  background: var(--accent-primary);
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: filter 0.15s ease;
+}
+
+.confirm-card__run:hover {
+  filter: brightness(1.1);
+}
+
+.confirm-card__cancel {
+  padding: 9px 16px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  border-radius: 8px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.confirm-card__cancel:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+/* ── Cleanup prompt card ──────────────────────────────────────────── */
+.cleanup-prompt-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cleanup-prompt-card__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.cleanup-prompt-card__textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.15s ease;
+}
+
+.cleanup-prompt-card__textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.cleanup-prompt-card__textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+.cleanup-prompt-card__textarea:disabled {
+  opacity: 0.5;
+}
+
+.cleanup-prompt-card__btn {
+  align-self: flex-start;
+  padding: 9px 18px;
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.cleanup-prompt-card__btn:hover:not(:disabled) {
+  background: var(--accent-primary);
+  color: #0f172a;
+  border-color: var(--accent-primary);
+}
+
+.cleanup-prompt-card__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Cleanup proposals ────────────────────────────────────────────── */
+.cleanup-proposals {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cleanup-proposals__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.cleanup-proposal {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-base);
+  border: 1px solid rgba(90, 122, 176, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cleanup-proposal input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--accent-primary);
+}
+
+.cleanup-proposal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cleanup-proposal__desc {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.cleanup-proposal__file {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.cleanup-proposals__approve {
+  align-self: flex-start;
+  padding: 9px 20px;
+  background: var(--accent-secondary);
+  color: #1a0a3d;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: filter 0.15s ease;
+}
+
+.cleanup-proposals__approve:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.cleanup-proposals__approve:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cleanup-done {
+  font-size: 14px;
+  color: #4ade80;
+  padding: 8px 0;
+}
+
+/* ── Clarification card ───────────────────────────────────────────── */
+.clarification-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clarification-card__label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-primary);
+}
+
+.clarification-card__row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.clarification-card__question {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.clarification-card__input {
+  width: 100%;
+  padding: 9px 14px;
+  background: rgba(42, 58, 92, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 13px;
+  color: var(--text-primary);
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.clarification-card__input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.clarification-card__input:focus {
+  border-color: var(--accent-primary);
+}
+
+.clarification-card__input:disabled {
+  opacity: 0.5;
+}
+
+.clarification-card__btn {
+  align-self: flex-start;
+  padding: 9px 18px;
+  background: var(--accent-primary);
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: filter 0.15s ease;
+}
+
+.clarification-card__btn:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.clarification-card__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

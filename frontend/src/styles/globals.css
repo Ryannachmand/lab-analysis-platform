@@ -1,0 +1,95 @@
+:root {
+  --bg-base: #2a3a5c;
+  --bg-panel: #354b73;
+  --bg-panel-raised: #3f5888;
+  --accent-primary: #38bdf8;
+  --accent-secondary: #a78bfa;
+  --text-primary: #f0f4ff;
+  --text-muted: #b8c8e8;
+  --border: #5a7ab0;
+  --checkpoint-card: #2e5090;
+
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  line-height: 1.2;
+}
+
+button {
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+
+input, textarea {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* Utility classes */
+.btn-accent {
+  background: var(--accent-primary);
+  color: #0f172a;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.btn-accent:hover {
+  filter: brightness(1.12);
+  transform: scale(1.02);
+}
+
+.btn-accent:active {
+  transform: scale(0.98);
+}
