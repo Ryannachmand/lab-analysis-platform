@@ -212,6 +212,8 @@ Set these in `.env` (see `.env.example`):
 | `JOBS_DIR` | `./jobs` | Root directory for per-job working directories |
 | `API_PORT` | `8000` | FastAPI listen port |
 | `ALLOWED_ORIGINS` | `http://localhost:5173` | Comma-separated list of CORS-allowed origins |
+| `API_HOST` | `0.0.0.0` | Bind address for the uvicorn server (passed to --host in scripts/start_api.sh) |
+| `TEST_MODE` | `true` | When true, the job runner writes a mock completion file instead of launching a real Claude Code subprocess — useful for frontend development without running real pipelines. See .env.example. |
 
 ## API Reference
 
@@ -231,6 +233,9 @@ Set these in `.env` (see `.env.example`):
 | `POST` | `/jobs/{id}/cleanup` | Run CleanupAgent: file triage + result interpretation + (if feedback provided) skills update proposals |
 | `GET` | `/jobs/{id}/cleanup/proposals` | Retrieve pending unapproved skill-update proposals |
 | `POST` | `/jobs/{id}/cleanup/approve` | Apply approved skill-update proposals to the skills library |
+
+Full request/response schemas are available at the running server's /docs
+endpoint (Swagger UI).
 
 ## Future work
 
