@@ -27,45 +27,6 @@ flowchart TD
     G -.approved changes.-> S
 ```
 
-## Prerequisites
-
-This app orchestrates analysis pipelines but doesn't ship the pipeline
-definitions themselves. Before running it, you need:
-
-- Python 3.11+
-- Anaconda (for R pipeline execution via `conda run -n r-env`)
-- Docker (optional — for containerised deployment)
-
-1. **Claude Code CLI** — `npm install -g @anthropic-ai/claude-code`, then
-   confirm it's on your PATH with `which claude`.
-
-2. **A [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2) checkout** —
-   this is where the actual pipeline templates, briefs, and lab-context files
-   live.
-   ```bash
-   git clone https://github.com/Ryannachmand/scrnaseq-skills-v2.git
-   ```
-   Follow that repo's own setup instructions to build the `r-env` conda
-   environment — this app doesn't create it for you, but the R-based
-   pipeline steps require it.
-
-3. **Point this app at it** — set `SKILLS_DIR` in `.env` to the path of your
-   `scrnaseq-skills-v2` checkout:
-   ```
-   SKILLS_DIR=/path/to/scrnaseq-skills-v2
-   ```
-   This app expects `SKILLS_DIR/pipelines/*/pipeline.md`,
-   `SKILLS_DIR/brief_template.txt`, and `SKILLS_DIR/lab_context.md` to exist —
-   that's the structure `scrnaseq-skills-v2` provides.
-
-### What happens if you skip this
-
-The API still starts without `SKILLS_DIR` set, but `DeploymentAgent` and
-`CleanupAgent` (behind `/jobs/submit`, `/jobs/prepare`, and the cleanup
-endpoints) run in degraded mode — low-confidence job results or a stub
-`CLAUDE.md` instead of a real one. A startup check logs a warning naming
-exactly what's missing rather than failing silently.
-
 ## How It Works
 
 Orion turns a plain-English request into a fully executed, checkpointed analysis pipeline by orchestrating two purpose-built agents around a single Claude Code CLI subprocess. All job state lives as files on disk in `jobs/{id}/` — there's no database.
@@ -159,6 +120,45 @@ sequenceDiagram
     Note over Skills: Future jobs read the updated library
     end
 ```
+
+## Prerequisites
+
+This app orchestrates analysis pipelines but doesn't ship the pipeline
+definitions themselves. Before running it, you need:
+
+- Python 3.11+
+- Anaconda (for R pipeline execution via `conda run -n r-env`)
+- Docker (optional — for containerised deployment)
+
+1. **Claude Code CLI** — `npm install -g @anthropic-ai/claude-code`, then
+   confirm it's on your PATH with `which claude`.
+
+2. **A [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2) checkout** —
+   this is where the actual pipeline templates, briefs, and lab-context files
+   live.
+   ```bash
+   git clone https://github.com/Ryannachmand/scrnaseq-skills-v2.git
+   ```
+   Follow that repo's own setup instructions to build the `r-env` conda
+   environment — this app doesn't create it for you, but the R-based
+   pipeline steps require it.
+
+3. **Point this app at it** — set `SKILLS_DIR` in `.env` to the path of your
+   `scrnaseq-skills-v2` checkout:
+   ```
+   SKILLS_DIR=/path/to/scrnaseq-skills-v2
+   ```
+   This app expects `SKILLS_DIR/pipelines/*/pipeline.md`,
+   `SKILLS_DIR/brief_template.txt`, and `SKILLS_DIR/lab_context.md` to exist —
+   that's the structure `scrnaseq-skills-v2` provides.
+
+### What happens if you skip this
+
+The API still starts without `SKILLS_DIR` set, but `DeploymentAgent` and
+`CleanupAgent` (behind `/jobs/submit`, `/jobs/prepare`, and the cleanup
+endpoints) run in degraded mode — low-confidence job results or a stub
+`CLAUDE.md` instead of a real one. A startup check logs a warning naming
+exactly what's missing rather than failing silently.
 
 ## Quickstart
 
