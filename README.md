@@ -1,6 +1,6 @@
 # Lab Analysis Platform
 
-*Orchestration layer for [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2) — early-stage and actively evolving.*
+*Orchestration layer for [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2) — early-stage and in development.*
 
 ## Why this exists
 
