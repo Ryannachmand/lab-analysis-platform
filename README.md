@@ -1,6 +1,6 @@
 # Lab Analysis Platform
 
-*Early-stage companion to [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2).*
+*Orchestration layer for [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2) — early-stage and actively evolving.*
 
 ## Why this exists
 
@@ -8,7 +8,7 @@ Modern single-cell RNA-seq analyses require dozens of computational decisions, e
 
 ## What this is
 
-This platform (early-stage companion to [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2)) represents curated bioinformatics workflows as reusable, AI-executable skills. Two agents divide the work: a `DeploymentAgent` selects and configures the right pipeline for a request, and a `CleanupAgent` interprets results and proposes improvements back into the skills library once a run completes. Execution itself runs autonomously through Claude Code, pausing at human-reviewed checkpoints rather than a single unsupervised prompt — so expert-designed pipelines stay reproducible even as the busywork is automated.
+This platform is a modular AI workflow architecture built around [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2) — a curated library of pipeline definitions that this platform selects from, executes, and improves. A `DeploymentAgent` selects and configures the right workflow for each request; execution runs autonomously through Claude Code, pausing at human-reviewed checkpoints rather than proceeding as a single unsupervised prompt; a `CleanupAgent` then interprets the results and proposes improvements back into the shared library. Unlike free-form conversational prompting, every workflow runs through curated, version-controlled pipeline definitions whose execution can be inspected, reproduced, and iteratively improved.
 
 ## Architecture at a glance
 
