@@ -62,6 +62,7 @@ Orion turns a plain-English request into a fully executed, checkpointed analysis
 **4. Interpretation and feedback loop.** After completion, `CleanupAgent` triages output files, writes a plain-English summary of what the pipeline found, and — if you leave feedback — proposes specific updates to the shared skills library. Approved proposals are written back into `scrnaseq-skills-v2` directly, so what one job learns becomes available to the next.
 
 ```mermaid
+%%{init: {"themeCSS": "text { font-size: 22px !important; }"}}%%
 sequenceDiagram
     actor User
     participant UI as React Frontend
