@@ -1,14 +1,31 @@
 # Lab Analysis Platform
 
-Backend API infrastructure for a lab bioinformatics platform. Wraps
-Claude Code agent execution of scRNAseq analysis pipelines defined in
-`~/claude-skills-v2/`.
+*Early-stage companion to [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2).*
+
+## Why this exists
+
+Modern single-cell RNA-seq analyses require dozens of computational decisions, extensive scripting, and familiarity with specialized software — a barrier that limits reproducibility and puts sophisticated analysis out of reach for many experimental scientists. This platform narrows that gap by letting a researcher describe an analysis in plain English, while a set of specialized agents handle pipeline selection and execution without sacrificing the structure and reproducibility of expert-designed workflows.
 
 ## What this is
 
-A FastAPI service that accepts analysis job submissions, creates per-job
-working directories, and runs Claude Code agents asynchronously. All job
-state is file-based — no database required at this stage.
+This platform (early-stage companion to [scrnaseq-skills-v2](https://github.com/Ryannachmand/scrnaseq-skills-v2)) represents curated bioinformatics workflows as reusable, AI-executable skills. Two agents divide the work: a `DeploymentAgent` selects and configures the right pipeline for a request, and a `CleanupAgent` interprets results and proposes improvements back into the skills library once a run completes. Execution itself runs autonomously through Claude Code, pausing at human-reviewed checkpoints rather than a single unsupervised prompt — so expert-designed pipelines stay reproducible even as the busywork is automated.
+
+## Architecture at a glance
+
+At a glance, a request flows through pipeline selection, autonomous execution with human checkpoints, and a cleanup step that feeds improvements back into the skills library:
+
+```mermaid
+flowchart TD
+    A["Researcher describes analysis<br/>in plain English"] --> B["DeploymentAgent<br/>selects &amp; configures a pipeline"]
+    B -.reads.-> S[("Skills Library<br/>scrnaseq-skills-v2")]
+    B --> C["Claude Code CLI<br/>executes pipeline autonomously"]
+    C --> D{"Blocking<br/>checkpoint?"}
+    D -- yes --> E["Researcher reviews finding<br/>&amp; responds"]
+    E --> C
+    D -- no --> F["Pipeline complete"]
+    F --> G["CleanupAgent interprets results<br/>&amp; proposes skill updates"]
+    G -.approved changes.-> S
+```
 
 ## Prerequisites
 
@@ -237,6 +254,13 @@ Set these in `.env` (see `.env.example`):
 
 Full request/response schemas are available at the running server's /docs
 endpoint (Swagger UI).
+
+## Design Principles
+
+- Reusable pipelines over one-off analysis scripts
+- Transparent execution — every stage is inspectable, nothing runs as a black box
+- Human oversight preserved at key decision points, not automated away
+- The skills library improves with use — validated runs feed back into future runs
 
 ## Future work
 
